@@ -3,6 +3,8 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Link, useLocation, useOutlet } from 'react-router-dom';
 import { NavLink } from './components/Navlink.tsx';
 
+export const getOutletBackgroundClass = (_isHomepageRoute: boolean) => 'bg-transparent';
+
 function App() {
   const sections = ['case-study', 'resume', 'aboutme'];
   const location = useLocation();
@@ -133,10 +135,7 @@ function App() {
           className={`relative w-full flex-grow overflow-hidden ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
         >
           {transitions((style, outlet) => (
-            <animated.div
-              style={style}
-              className={isHomepageRoute ? 'bg-transparent' : 'bg-[#FFF6ED]'}
-            >
+            <animated.div style={style} className={getOutletBackgroundClass(isHomepageRoute)}>
               {outlet}
             </animated.div>
           ))}
