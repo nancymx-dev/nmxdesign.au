@@ -26,7 +26,7 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
   });
 
   return (
-    <Link to={`/portfolio/${slug}`}>
+    <Link to={`/case-studies/${slug}`}>
       <animated.div
         style={{ ...style, ...hoverAnimation }}
         className="bg-white/80 rounded-xl border border-gray-200 cursor-pointer h-full overflow-hidden flex flex-col"

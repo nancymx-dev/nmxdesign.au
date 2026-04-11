@@ -4,9 +4,14 @@ import { Link, useLocation, useOutlet } from 'react-router-dom';
 import { NavLink } from './components/Navlink.tsx';
 
 function App() {
-  const sections = ['case-study', 'resume', 'aboutme'];
+  const sections = ['demos', 'case-studies', 'resume', 'aboutme'];
   const location = useLocation();
   const isHomepageRoute = location.pathname === '/';
+  const isApexDeckRoute =
+    location.pathname === '/case-studies/apex-wrapped' ||
+    location.pathname === '/case-studies/apexwrapped' ||
+    location.pathname === '/case-study/apex-wrapped' ||
+    location.pathname === '/case-study/apexwrapped';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentOutlet = useOutlet();
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -82,7 +87,7 @@ function App() {
       <div className="relative z-10">
         <nav
           ref={navRef}
-          className="w-full flex items-center justify-between p-4 pr-8 bg-[#FFF6ED] backdrop-blur-sm sticky top-0 z-20 font-pfMarlet"
+          className={`w-full flex items-center justify-between p-4 pr-8 bg-[#FFF6ED] sticky top-0 z-20 font-pfMarlet ${isApexDeckRoute ? '' : 'backdrop-blur-sm'}`}
         >
           <Link to={'/'} className="z-30">
             <div className="font-pfMarletItalic text-[#AAAADD]">NMX DESIGN</div>
@@ -130,16 +135,22 @@ function App() {
         )}
 
         <main
-          className={`relative w-full flex-grow overflow-hidden ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
+          className={`relative w-full flex-grow ${isApexDeckRoute ? 'overflow-visible' : 'overflow-hidden'} ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
         >
-          {transitions((style, outlet) => (
-            <animated.div
-              style={style}
-              className={isHomepageRoute ? 'bg-transparent' : 'bg-[#FFF6ED]'}
-            >
-              {outlet}
-            </animated.div>
-          ))}
+          {isApexDeckRoute ? (
+            <div className="min-h-full bg-transparent">
+              {currentOutlet}
+            </div>
+          ) : (
+            transitions((style, outlet) => (
+              <animated.div
+                style={style}
+                className={isHomepageRoute ? 'bg-transparent' : 'bg-[#FFF6ED]'}
+              >
+                {outlet}
+              </animated.div>
+            ))
+          )}
         </main>
       </div>
     </div>

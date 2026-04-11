@@ -17,19 +17,17 @@ const PerformanceToolPage = () => {
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
         <animated.div style={trail[0]} className="mb-8">
-          <Link to="/portfolio" className="text-[#AAAADD] hover:underline font-bold text-lg">
-            ← Back to Portfolio
+          <Link to="/case-studies" className="text-[#AAAADD] hover:underline font-bold text-lg">
+            ← Back to Case Studies
           </Link>
         </animated.div>
 
         {/* Hero Section */}
         <animated.div style={trail[1]} className="mb-16">
-          <h1 className="text-6xl font-bold text-gray-700 mb-6 font-pfMarlet">
-            AI-Powered Performance Tool
-          </h1>
+          <h1 className="mb-6 font-pfMarlet text-6xl font-medium text-gray-700">Apex Wrapped</h1>
           <OptimizedImage
             src="/perftooldesigns/header_image.jpeg"
-            alt="Performance Tool case study header image"
+            alt="Apex Wrapped case study header image"
             className="w-full rounded-xl shadow-lg mt-2 mb-8"
             aspectRatio="16/9"
             loading="eager"
@@ -345,7 +343,7 @@ const PerformanceToolPage = () => {
           <div className="text-center">
             <ClickableImage
               src="/perftooldesigns/blog.png"
-              alt="Blog post announcing the AI performance tool"
+              alt="Blog post announcing Apex Wrapped"
               className="rounded-xl shadow-lg mx-auto max-w-2xl"
             />
             <p className="text-gray-600 mt-4 italic">
@@ -496,8 +494,8 @@ const PerformanceToolPage = () => {
 
         {/* Navigation */}
         <animated.div style={trail[12]} className="text-center pt-8 border-t border-gray-200">
-          <Link to="/portfolio" className="text-[#AAAADD] hover:underline font-bold text-lg">
-            ← Back to Portfolio
+          <Link to="/case-studies" className="text-[#AAAADD] hover:underline font-bold text-lg">
+            ← Back to Case Studies
           </Link>
         </animated.div>
       </div>

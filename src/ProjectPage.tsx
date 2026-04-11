@@ -11,12 +11,12 @@ const ProjectPage = () => {
 
   return (
     <animated.div style={animation} className="p-4 md:p-8 text-center">
-      <h1 className="text-4xl font-bold mb-4 font-pfMarlet text-gray-700">
+      <h1 className="mb-4 font-pfMarlet text-4xl font-medium text-gray-700">
         Project: <span className="text-[#FF593E]">{projectId}</span>
       </h1>
       <p className="text-lg text-gray-600 mb-8">Coming soon!</p>
-      <Link to="/portfolio" className="text-[#AAAADD] hover:underline font-bold">
-        ← Back to Portfolio
+      <Link to="/case-studies" className="text-[#AAAADD] hover:underline font-bold">
+        ← Back to Case Studies
       </Link>
     </animated.div>
   );

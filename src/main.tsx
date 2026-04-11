@@ -2,14 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
+import DemosPage from './demo/DemosPage.tsx';
 import Homepage from './Homepage.tsx';
 import './index.css';
-import Portfolio from './Portfolio.tsx';
+import CaseStudies from './CaseStudies.tsx';
 import ProjectPage from './ProjectPage.tsx';
 import Resume from './Resume.tsx';
 import UplinkPage from './UplinkPage.tsx';
-import PerformanceToolPage from './PerformanceToolPage.tsx';
 import JiraPlaybookPage from './JiraPlaybookPage.tsx';
+import ApexWrappedPage from './ApexWrappedPage.tsx';
 import Aboutme from './Aboutme.tsx';
 import PortfolioRedirect from './PortfolioRedirect.tsx';
 
@@ -20,20 +21,32 @@ const router = createBrowserRouter([
     children: [
       { path: '', element: <Homepage /> },
       { path: 'aboutme', element: <Aboutme /> },
+      { path: 'demo', element: <DemosPage /> },
+      { path: 'demos', element: <DemosPage /> },
 
-      { path: 'case-study', element: <Portfolio /> },
-      { path: 'case-study/uplinked', element: <UplinkPage /> },
-      { path: 'case-study/aiperftool', element: <PerformanceToolPage /> },
-      { path: 'case-study/jiraplaybook', element: <JiraPlaybookPage /> },
-      { path: 'case-study/:projectId', element: <ProjectPage /> },
+      { path: 'case-studies', element: <CaseStudies /> },
+      { path: 'case-studies/uplinked', element: <UplinkPage /> },
+      { path: 'case-studies/jiraplaybook', element: <JiraPlaybookPage /> },
+      { path: 'case-studies/apex-wrapped', element: <ApexWrappedPage /> },
+      { path: 'case-studies/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      { path: 'case-studies/:projectId', element: <ProjectPage /> },
 
-      // Legacy /portfolio routes → redirect to /case-study
-      { path: 'portfolio', element: <Navigate to="/case-study" replace /> },
-      { path: 'portfolio/uplinked', element: <Navigate to="/case-study/uplinked" replace /> },
-      { path: 'portfolio/aiperftool', element: <Navigate to="/case-study/aiperftool" replace /> },
+      // Legacy /case-study routes → redirect to /case-studies
+      { path: 'case-study', element: <Navigate to="/case-studies" replace /> },
+      { path: 'case-study/uplinked', element: <Navigate to="/case-studies/uplinked" replace /> },
+      { path: 'case-study/jiraplaybook', element: <Navigate to="/case-studies/jiraplaybook" replace /> },
+      { path: 'case-study/apex-wrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      { path: 'case-study/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      { path: 'case-study/:projectId', element: <PortfolioRedirect /> },
+
+      // Legacy /portfolio routes → redirect to /case-studies
+      { path: 'portfolio', element: <Navigate to="/case-studies" replace /> },
+      { path: 'portfolio/uplinked', element: <Navigate to="/case-studies/uplinked" replace /> },
+      { path: 'portfolio/apex-wrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
+      { path: 'portfolio/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
       {
         path: 'portfolio/jiraplaybook',
-        element: <Navigate to="/case-study/jiraplaybook" replace />,
+        element: <Navigate to="/case-studies/jiraplaybook" replace />,
       },
       { path: 'portfolio/:projectId', element: <PortfolioRedirect /> },
 

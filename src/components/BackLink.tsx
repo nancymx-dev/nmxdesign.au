@@ -6,7 +6,11 @@ interface BackLinkProps {
   className?: string;
 }
 
-export default function BackLink({ to = '/portfolio', label = 'Back to Portfolio', className }: BackLinkProps) {
+export default function BackLink({
+  to = '/case-studies',
+  label = 'Back to Case Studies',
+  className,
+}: BackLinkProps) {
   return (
     <Link to={to} className={`text-[#184027] font-bold text-lg ${className ?? ''}`}>
       <button className="group inline-flex items-center gap-2 bg-transparent relative py-2 px-4">

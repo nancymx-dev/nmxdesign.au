@@ -61,14 +61,14 @@ const JiraPlaybookPage = () => {
       <div className="max-w-6xl mx-auto">
         {/* Back Button */}
         <animated.div style={trail[0]} className="mb-8">
-          <Link to="/portfolio" className="text-[#AAAADD] hover:underline font-bold text-lg">
-            ← Back to Portfolio
+          <Link to="/case-studies" className="text-[#AAAADD] hover:underline font-bold text-lg">
+            ← Back to Case Studies
           </Link>
         </animated.div>
 
         {/* Hero Section */}
         <animated.div style={trail[1]} className="mb-16">
-          <h1 className="text-6xl font-bold text-gray-700 mb-6 font-pfMarlet">
+          <h1 className="mb-6 font-pfMarlet text-6xl font-medium text-gray-700">
             Jira Playbook for Designers
           </h1>
           <OptimizedImage
@@ -602,8 +602,8 @@ const JiraPlaybookPage = () => {
 
         {/* Navigation */}
         <animated.div style={trail[12]} className="text-center pt-8 border-t border-gray-200">
-          <Link to="/portfolio" className="text-[#AAAADD] hover:underline font-bold text-lg">
-            ← Back to Portfolio
+          <Link to="/case-studies" className="text-[#AAAADD] hover:underline font-bold text-lg">
+            ← Back to Case Studies
           </Link>
         </animated.div>
       </div>
