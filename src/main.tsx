@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
-import DemosPage from './demo/DemosPage.tsx';
 import Homepage from './Homepage.tsx';
 import './index.css';
 import CaseStudies from './CaseStudies.tsx';
@@ -21,8 +20,8 @@ const router = createBrowserRouter([
     children: [
       { path: '', element: <Homepage /> },
       { path: 'aboutme', element: <Aboutme /> },
-      { path: 'demo', element: <DemosPage /> },
-      { path: 'demos', element: <DemosPage /> },
+      { path: 'demo', element: <Navigate to="/case-studies" replace /> },
+      { path: 'demos', element: <Navigate to="/case-studies" replace /> },
 
       { path: 'case-studies', element: <CaseStudies /> },
       { path: 'case-studies/uplinked', element: <UplinkPage /> },

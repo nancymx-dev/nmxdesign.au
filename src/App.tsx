@@ -4,7 +4,7 @@ import { Link, useLocation, useOutlet } from 'react-router-dom';
 import { NavLink } from './components/Navlink.tsx';
 
 function App() {
-  const sections = ['demos', 'case-studies', 'resume', 'aboutme'];
+  const sections = ['case-studies', 'resume', 'aboutme'];
   const location = useLocation();
   const isHomepageRoute = location.pathname === '/';
   const isApexDeckRoute =

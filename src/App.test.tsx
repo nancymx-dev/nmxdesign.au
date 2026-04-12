@@ -25,7 +25,6 @@ const renderRoute = (initialEntry: string) => {
         element: <App />,
         children: [
           { index: true, element: <div>Homepage outlet</div> },
-          { path: 'demos', element: <div>Demos outlet</div> },
           { path: 'case-studies', element: <div>Case studies outlet</div> },
         ],
       },
@@ -50,18 +49,10 @@ describe('App shell', () => {
     expect(screen.getByText('Case studies outlet').parentElement).toHaveClass('bg-[#FFF6ED]');
   });
 
-  it('shows Demos before Case Studies in the navigation', () => {
+  it('renders Case Studies in the navigation', () => {
     renderRoute('/');
 
-    const demosLink = screen.getByRole('link', { name: 'Demos' });
     const caseStudyLink = screen.getByRole('link', { name: 'Case Studies' });
-
-    expect(demosLink.compareDocumentPosition(caseStudyLink)).toBe(Node.DOCUMENT_POSITION_FOLLOWING);
-  });
-
-  it('renders the demos outlet on the demos route with the app background', () => {
-    renderRoute('/demos');
-
-    expect(screen.getByText('Demos outlet').parentElement).toHaveClass('bg-[#FFF6ED]');
+    expect(caseStudyLink).toBeInTheDocument();
   });
 });
