@@ -47,6 +47,8 @@ interface NavLinkProps {
 export const NavLink = ({ label, isActive, className, onClick, scale = 1 }: NavLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const showIndicator = isActive || isHovered;
+  const href = `/${label}`;
+  const requiresDocumentNavigation = href === '/case-studies';
   const displayLabel =
     label === 'aboutme'
       ? 'About me'
@@ -55,19 +57,32 @@ export const NavLink = ({ label, isActive, className, onClick, scale = 1 }: NavL
           .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
           .join(' ');
 
-  return (
-    <Link
-      to={`/${label}`}
-      className={`text-[#184027] hover:text-gray-600 transition-colors ${className}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      onClick={onClick}
-    >
-      <button className="bg-transparent relative py-2 px-4">
-        {displayLabel}
+  const commonProps = {
+    className: `text-[#184027] hover:text-gray-600 transition-colors ${className ?? ''}`,
+    onMouseEnter: () => setIsHovered(true),
+    onMouseLeave: () => setIsHovered(false),
+    onClick,
+  };
 
-        <AnimatedIndicator show={showIndicator} scale={scale} />
-      </button>
+  const content = (
+    <button className="bg-transparent relative py-2 px-4">
+      {displayLabel}
+
+      <AnimatedIndicator show={showIndicator} scale={scale} />
+    </button>
+  );
+
+  if (requiresDocumentNavigation) {
+    return (
+      <a href={href} {...commonProps}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={href} {...commonProps}>
+      {content}
     </Link>
   );
 };

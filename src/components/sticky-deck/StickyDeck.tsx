@@ -47,7 +47,7 @@ const StickyDeck = ({ slides }: StickyDeckProps) => {
       section.querySelectorAll('.slide-card'),
     );
 
-    cards.forEach((card, i) => {
+    cards.forEach((card: HTMLElement, i: number) => {
       gsap.set(card, { zIndex: i + 1 });
     });
 
@@ -58,17 +58,17 @@ const StickyDeck = ({ slides }: StickyDeckProps) => {
       trigger: section,
       start: 'top 80%',
       end: 'bottom 20%',
-      onToggle: ({ isActive }) => setDotsVisible(isActive),
+      onToggle: ({ isActive }: ScrollTrigger) => setDotsVisible(isActive),
     });
     triggers.push(sectionTrigger);
 
     // Track which slide is active for the progress indicator
-    cards.forEach((card, i) => {
+    cards.forEach((card: HTMLElement, i: number) => {
       const st = ScrollTrigger.create({
         trigger: card,
         start: 'top 60%',
         end: 'bottom 40%',
-        onToggle: ({ isActive }) => {
+        onToggle: ({ isActive }: ScrollTrigger) => {
           if (isActive) setActiveIndex(i);
         },
       });
@@ -77,7 +77,7 @@ const StickyDeck = ({ slides }: StickyDeckProps) => {
 
     if (!prefersReduced) {
       // Push oldest card off-screen when the (i + MAX_VISIBLE)th card arrives
-      cards.forEach((card, i) => {
+      cards.forEach((card: HTMLElement, i: number) => {
         const pushTriggerIndex = i + MAX_VISIBLE;
         if (pushTriggerIndex < cards.length) {
           const anim = gsap.to(card, {

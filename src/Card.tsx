@@ -1,6 +1,5 @@
 import { animated, SpringValue, useSpring } from '@react-spring/web';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 interface CardProps {
   slug: string;
@@ -26,7 +25,7 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
   });
 
   return (
-    <Link to={`/case-studies/${slug}`}>
+    <a href={`/case-studies/${slug}`}>
       <animated.div
         style={{ ...style, ...hoverAnimation }}
         className="bg-white/80 rounded-xl border border-gray-200 cursor-pointer h-full overflow-hidden flex flex-col"
@@ -58,7 +57,7 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
           ) : null}
         </div>
       </animated.div>
-    </Link>
+    </a>
   );
 };
 

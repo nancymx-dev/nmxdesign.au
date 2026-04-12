@@ -1,17 +1,28 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
 import Homepage from './Homepage.tsx';
 import './index.css';
-import CaseStudies from './CaseStudies.tsx';
-import ProjectPage from './ProjectPage.tsx';
 import Resume from './Resume.tsx';
-import UplinkPage from './UplinkPage.tsx';
-import JiraPlaybookPage from './JiraPlaybookPage.tsx';
-import ApexWrappedPage from './ApexWrappedPage.tsx';
 import Aboutme from './Aboutme.tsx';
 import PortfolioRedirect from './PortfolioRedirect.tsx';
+
+const CaseStudies = lazy(() => import('./CaseStudies.tsx'));
+const ProjectPage = lazy(() => import('./ProjectPage.tsx'));
+const UplinkPage = lazy(() => import('./UplinkPage.tsx'));
+const JiraPlaybookPage = lazy(() => import('./JiraPlaybookPage.tsx'));
+const ApexWrappedPage = lazy(() => import('./ApexWrappedPage.tsx'));
+
+const routeFallback = (
+  <div className="flex min-h-[40vh] items-center justify-center bg-[#FFF6ED] px-6 text-center text-lg text-gray-600">
+    Loading…
+  </div>
+);
+
+const withSuspense = (element: React.ReactNode) => (
+  <Suspense fallback={routeFallback}>{element}</Suspense>
+);
 
 const router = createBrowserRouter([
   {
@@ -23,12 +34,12 @@ const router = createBrowserRouter([
       { path: 'demo', element: <Navigate to="/case-studies" replace /> },
       { path: 'demos', element: <Navigate to="/case-studies" replace /> },
 
-      { path: 'case-studies', element: <CaseStudies /> },
-      { path: 'case-studies/uplinked', element: <UplinkPage /> },
-      { path: 'case-studies/jiraplaybook', element: <JiraPlaybookPage /> },
-      { path: 'case-studies/apex-wrapped', element: <ApexWrappedPage /> },
+      { path: 'case-studies', element: withSuspense(<CaseStudies />) },
+      { path: 'case-studies/uplinked', element: withSuspense(<UplinkPage />) },
+      { path: 'case-studies/jiraplaybook', element: withSuspense(<JiraPlaybookPage />) },
+      { path: 'case-studies/apex-wrapped', element: withSuspense(<ApexWrappedPage />) },
       { path: 'case-studies/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
-      { path: 'case-studies/:projectId', element: <ProjectPage /> },
+      { path: 'case-studies/:projectId', element: withSuspense(<ProjectPage />) },
 
       // Legacy /case-study routes → redirect to /case-studies
       { path: 'case-study', element: <Navigate to="/case-studies" replace /> },

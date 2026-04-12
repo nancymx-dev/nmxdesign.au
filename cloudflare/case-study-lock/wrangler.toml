@@ -1,0 +1,11 @@
+name = "nmx-case-study-lock"
+main = "src/index.ts"
+compatibility_date = "2026-04-12"
+
+[vars]
+# This must be the real origin behind your Worker, not the public domain that the Worker sits on.
+# Example: ORIGIN_HOST = "nmxdesign-au.pages.dev"
+ORIGIN_HOST = "nmxdesign.au"
+COOKIE_NAME = "nmx_case_study_auth"
+SESSION_TTL_SECONDS = "2592000"
+PROTECTED_PREFIXES = "/case-studies,/case-study,/portfolio,/uplinked/,/jiraplaybook/,/perftooldesigns/"
