@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import StickyDeck from '../../components/sticky-deck/StickyDeck';
 import { modcSlides } from './modcCards';
 
@@ -11,6 +11,18 @@ const scopeItems = [
 
 const MODCCaseStudyPage = () => {
   const pageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const preloadLink = document.createElement('link');
+    preloadLink.rel = 'preload';
+    preloadLink.as = 'video';
+    preloadLink.href = '/modc/MODC.mov';
+    document.head.appendChild(preloadLink);
+
+    return () => {
+      document.head.removeChild(preloadLink);
+    };
+  }, []);
 
   const scrollToTop = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -39,9 +51,9 @@ const MODCCaseStudyPage = () => {
             </div>
 
             <div className="relative flex items-center justify-center">
-              <div className="w-full overflow-hidden rounded-2xl shadow-[0_24px_60px_rgba(24,64,39,0.10)]">
+              <div className="aspect-video w-full overflow-hidden rounded-2xl bg-[var(--brand-sand)] shadow-[0_24px_60px_rgba(24,64,39,0.10)]">
                 <video
-                  className="w-full rounded-2xl bg-[var(--brand-sand)]"
+                  className="h-full w-full rounded-2xl object-cover bg-[var(--brand-sand)]"
                   src="/modc/MODC.mov"
                   preload="auto"
                   autoPlay

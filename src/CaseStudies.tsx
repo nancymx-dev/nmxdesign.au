@@ -19,6 +19,7 @@ const caseStudyItems: Project[] = [
       'Designed an enterprise admin experience for organizations without an identity provider to manage shared domains across complex structures, driving an estimated $100k in monthly Admin Hub revenue.',
     display_photo: '/modc/modccover.png',
     hover_video: '/modc/Claimaccounts.MOV',
+    hover_video_preload: 'auto',
     media_fit: 'cover',
     // Keep the top UI visible; crop more from the bottom.
     media_image_class: 'object-[50%_18%]',

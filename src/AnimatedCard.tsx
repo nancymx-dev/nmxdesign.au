@@ -7,6 +7,7 @@ export type Project = {
   description: string;
   display_photo?: string;
   hover_video?: string;
+  hover_video_preload?: 'none' | 'metadata' | 'auto';
   media_fit?: 'contain' | 'cover';
   media_wrapper_class?: string;
   media_image_class?: string;
@@ -33,6 +34,7 @@ const AnimatedCard = ({ item }: { item: Project }) => {
         description={item.description}
         display_photo={item.display_photo}
         hover_video={item.hover_video}
+        hover_video_preload={item.hover_video_preload}
         media_fit={item.media_fit}
         media_wrapper_class={item.media_wrapper_class}
         media_image_class={item.media_image_class}

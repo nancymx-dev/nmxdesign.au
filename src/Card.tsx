@@ -8,6 +8,7 @@ interface CardProps {
   description: string;
   display_photo?: string;
   hover_video?: string;
+  hover_video_preload?: 'none' | 'metadata' | 'auto';
   media_fit?: 'contain' | 'cover';
   media_wrapper_class?: string;
   media_image_class?: string;
@@ -17,7 +18,19 @@ interface CardProps {
   style: { [key: string]: SpringValue<any> };
 }
 
-const Card = ({ slug, title, description, display_photo, hover_video, media_fit = 'cover', media_wrapper_class, media_image_class, tags, style }: CardProps) => {
+const Card = ({
+  slug,
+  title,
+  description,
+  display_photo,
+  hover_video,
+  hover_video_preload = 'metadata',
+  media_fit = 'cover',
+  media_wrapper_class,
+  media_image_class,
+  tags,
+  style,
+}: CardProps) => {
   const [isHovered, setHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -65,10 +78,11 @@ const Card = ({ slug, title, description, display_photo, hover_video, media_fit 
               <video
                 ref={videoRef}
                 src={hover_video}
+                poster={display_photo}
                 muted
                 loop
                 playsInline
-                preload="metadata"
+                preload={hover_video_preload}
                 aria-hidden="true"
                 className={`absolute inset-0 h-full w-full ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
               />
