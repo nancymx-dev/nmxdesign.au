@@ -8,7 +8,21 @@ const caseStudyItems: Project[] = [
     description:
       'An AI-assisted performance review experience that helps people gather work evidence, structure their thinking, and write stronger review narratives with less friction.',
     display_photo: '/perftooldesigns/display_photo.jpeg',
+    hover_video: '/perftooldesigns/Apexwrapped/Apexwrappedcardvideo.MOV',
+    media_fit: 'cover',
     tags: ['AI', 'UX', 'Product Design', 'Product Management'],
+  },
+  {
+    slug: 'modc',
+    title: 'Multi-org domain claim',
+    description:
+      'Designed an enterprise admin experience for organizations without an identity provider to manage shared domains across complex structures, driving an estimated $100k in monthly Admin Hub revenue.',
+    display_photo: '/modc/modccover.png',
+    hover_video: '/modc/Claimaccounts.MOV',
+    media_fit: 'cover',
+    // Keep the top UI visible; crop more from the bottom.
+    media_image_class: 'object-[50%_18%]',
+    tags: ['Enterprise', 'Admin UX', 'Governance'],
   },
   {
     slug: 'uplinked',
@@ -16,6 +30,7 @@ const caseStudyItems: Project[] = [
     description:
       'Workforce Management System dashboard design for a physical security company managing hundreds of guards across multiple worksites.',
     display_photo: '/uplinked/FinalDashboardFigma.jpg',
+    media_image_class: 'scale-[1.28] object-[50%_32%]',
     tags: ['UX', 'Project Management', 'Dashboard', 'Web', 'Mobile'],
   },
   {

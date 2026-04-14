@@ -3,6 +3,10 @@ export type MediaItem = {
   src: string;
   alt: string;
   label?: string;
+  objectFit?: 'contain' | 'cover';
+  objectPosition?: string;
+  backgroundClass?: string;
+  naturalSize?: boolean;
 };
 
 export type ApexSlide = {
@@ -10,10 +14,23 @@ export type ApexSlide = {
   stepNumber: string;
   eyebrow: string;
   title: string;
+  primarySectionTitle?: string;
   description: string;
+  bodyBeforeBullets?: string[];
   bullets?: string[];
+  bodyAfterBullets?: string[];
+  secondaryTitle?: string;
+  secondaryDescription?: string;
+  secondaryBullets?: string[];
+  secondaryBodyAfterBullets?: string[];
   statValue?: string;
   statLabel?: string;
+  mediaHeightClass?: string;
+  mediaImageClass?: string;
+  mediaFrameClass?: string;
+  mediaOffsetClass?: string;
+  sideLayoutClass?: string;
+  mediaPlacement?: 'below' | 'right';
   layout: 'text-only' | 'text-image-below' | 'process-overview' | 'process-details' | 'product-launch' | 'product-demos';
   media?: MediaItem[];
   bulletMedia?: MediaItem[];

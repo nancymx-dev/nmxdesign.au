@@ -1,19 +1,25 @@
 import { animated, SpringValue, useSpring } from '@react-spring/web';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 interface CardProps {
   slug: string;
   title: string;
   description: string;
   display_photo?: string;
+  hover_video?: string;
+  media_fit?: 'contain' | 'cover';
+  media_wrapper_class?: string;
+  media_image_class?: string;
   tags?: string[];
   // This correctly accepts the animation style from the parent
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   style: { [key: string]: SpringValue<any> };
 }
 
-const Card = ({ slug, title, description, display_photo, tags, style }: CardProps) => {
+const Card = ({ slug, title, description, display_photo, hover_video, media_fit = 'cover', media_wrapper_class, media_image_class, tags, style }: CardProps) => {
   const [isHovered, setHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // This spring handles the hover effect
   const hoverAnimation = useSpring({
@@ -24,21 +30,50 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
     config: { tension: 300, friction: 15 },
   });
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !hover_video) return;
+
+    if (isHovered) {
+      void video.play().catch(() => {});
+      return;
+    }
+
+    video.pause();
+    video.currentTime = 0;
+  }, [hover_video, isHovered]);
+
   return (
-    <a href={`/case-studies/${slug}`}>
+    <Link to={`/case-studies/${slug}`}>
       <animated.div
         style={{ ...style, ...hoverAnimation }}
         className="bg-white/80 rounded-xl border border-gray-200 cursor-pointer h-full overflow-hidden flex flex-col"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {display_photo ? (
-          <img
-            src={display_photo}
-            alt={title}
-            className="w-full h-64 object-cover"
-            loading="lazy"
-          />
+        {(display_photo || hover_video) ? (
+          <div className={`relative h-64 overflow-hidden bg-[#f1efe9] ${media_wrapper_class ?? ''}`}>
+            {display_photo ? (
+              <img
+                src={display_photo}
+                alt={title}
+                className={`absolute inset-0 h-full w-full ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${hover_video && isHovered ? 'opacity-0' : 'opacity-100'}`}
+                loading="lazy"
+              />
+            ) : null}
+            {hover_video ? (
+              <video
+                ref={videoRef}
+                src={hover_video}
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-hidden="true"
+                className={`absolute inset-0 h-full w-full ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+              />
+            ) : null}
+          </div>
         ) : null}
         <div className="p-6 flex-1 flex flex-col">
           <h2 className="text-3xl font-bold text-[#AAAADD] mb-3 font-pfMarlet">{title}</h2>
@@ -57,7 +92,7 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
           ) : null}
         </div>
       </animated.div>
-    </a>
+    </Link>
   );
 };
 

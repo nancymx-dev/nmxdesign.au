@@ -7,11 +7,14 @@ function App() {
   const sections = ['case-studies', 'resume', 'aboutme'];
   const location = useLocation();
   const isHomepageRoute = location.pathname === '/';
-  const isApexDeckRoute =
+  const isStickyDeckRoute =
     location.pathname === '/case-studies/apex-wrapped' ||
     location.pathname === '/case-studies/apexwrapped' ||
+    location.pathname === '/case-studies/modc' ||
     location.pathname === '/case-study/apex-wrapped' ||
-    location.pathname === '/case-study/apexwrapped';
+    location.pathname === '/case-study/apexwrapped' ||
+    location.pathname === '/case-study/modc' ||
+    location.pathname === '/portfolio/modc';
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const currentOutlet = useOutlet();
   const shellRef = useRef<HTMLDivElement | null>(null);
@@ -87,7 +90,7 @@ function App() {
       <div className="relative z-10">
         <nav
           ref={navRef}
-          className={`w-full flex items-center justify-between p-4 pr-8 bg-[#FFF6ED] sticky top-0 z-20 font-pfMarlet ${isApexDeckRoute ? '' : 'backdrop-blur-sm'}`}
+          className={`w-full flex items-center justify-between p-4 pr-8 bg-[#FFF6ED] sticky top-0 z-20 font-pfMarlet ${isStickyDeckRoute ? '' : 'backdrop-blur-sm'}`}
         >
           <Link to={'/'} className="z-30">
             <div className="font-pfMarletItalic text-[#AAAADD]">NMX DESIGN</div>
@@ -135,9 +138,9 @@ function App() {
         )}
 
         <main
-          className={`relative w-full flex-grow ${isApexDeckRoute ? 'overflow-visible' : 'overflow-hidden'} ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
+          className={`relative w-full flex-grow ${isStickyDeckRoute ? 'overflow-visible' : 'overflow-hidden'} ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
         >
-          {isApexDeckRoute ? (
+          {isStickyDeckRoute ? (
             <div className="min-h-full bg-transparent">
               {currentOutlet}
             </div>
