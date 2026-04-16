@@ -26,10 +26,10 @@ function TitleWithItalicSuffix({ title, suffix }: { title: string; suffix: strin
 
 function HeroMediaVideo() {
   return (
-    <div className="relative h-full w-full bg-[rgba(255,246,237,0.65)]">
+    <div className="relative w-full bg-[rgba(234,225,216,0.45)]">
       <video
-        className="h-full w-full object-cover"
-        style={{ objectPosition: '50% 8%' }}
+        className="block h-auto w-full"
+        style={{ objectPosition: '50% 50%' }}
         src="/AIlabs/endtoendexperiment/heroeverything.MOV"
         autoPlay
         muted
@@ -97,8 +97,8 @@ export default function AiLabEntryPage() {
             </div>
           </div>
 
-          <div className="mt-12 overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(24,64,39,0.18)]">
-            <div className="aspect-[21/9] w-full">
+          <div className="mt-12 overflow-hidden rounded-[2rem] bg-[rgba(234,225,216,0.42)] p-3 shadow-[0_30px_60px_-15px_rgba(24,64,39,0.18)] sm:p-4">
+            <div className="overflow-hidden rounded-[1.5rem] border border-[rgba(24,64,39,0.08)] bg-[rgba(255,248,243,0.72)]">
               <HeroMediaVideo />
             </div>
           </div>
