@@ -41,7 +41,7 @@ function CollageBentoFallback() {
 }
 
 const VIDEO_SRC = '/AIlabs/endtoendexperiment/heroeverything.MOV';
-const STILL_TIME_SECONDS = 1.6;
+const POSTER_SRC = '/AIlabs/endtoendexperiment/homepageOPEN.png';
 
 export default function EndToEndExperimentBentoCard({
   entry,
@@ -56,22 +56,11 @@ export default function EndToEndExperimentBentoCard({
   const [hovered, setHovered] = useState(false);
   const [videoOk, setVideoOk] = useState(true);
 
-  const seekToStill = useCallback((video: HTMLVideoElement) => {
-    const duration = Number.isFinite(video.duration) ? video.duration : undefined;
-    const target = duration ? Math.min(Math.max(0.01, STILL_TIME_SECONDS), Math.max(0.01, duration - 0.05)) : STILL_TIME_SECONDS;
-    try {
-      video.currentTime = target;
-    } catch {
-      // ignore
-    }
-    video.pause();
-  }, []);
-
   const stop = useCallback(() => {
     const video = videoRef.current;
     if (!video) return;
-    seekToStill(video);
-  }, [seekToStill]);
+    video.pause();
+  }, []);
 
   const start = useCallback(async () => {
     const video = videoRef.current;
@@ -143,19 +132,24 @@ export default function EndToEndExperimentBentoCard({
             ) : null}
 
             {videoOk ? (
+              <img
+                src={POSTER_SRC}
+                alt=""
+                aria-hidden="true"
+                className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${hovered ? 'opacity-0' : 'opacity-100'}`}
+                style={{ objectPosition: '50% 18%' }}
+              />
+            ) : null}
+
+            {videoOk ? (
               <video
                 ref={videoRef}
                 muted
                 loop
                 playsInline
                 preload="auto"
-                className="h-full w-full object-cover"
+                className={`h-full w-full object-cover transition-opacity duration-300 ${hovered ? 'opacity-100' : 'opacity-0'}`}
                 style={{ objectPosition: '50% 45%' }}
-                onLoadedMetadata={() => {
-                  const video = videoRef.current;
-                  if (!video) return;
-                  seekToStill(video);
-                }}
                 onError={() => setVideoOk(false)}
               >
                 <source src={VIDEO_SRC} />
