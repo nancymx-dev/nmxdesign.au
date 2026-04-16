@@ -147,10 +147,7 @@ function App() {
             </div>
           ) : (
             transitions((style, outlet) => (
-              <animated.div
-                style={style}
-                className={isHomepageRoute ? 'bg-transparent' : 'bg-[#FFF6ED]'}
-              >
+              <animated.div style={style} className="bg-transparent">
                 {outlet}
               </animated.div>
             ))

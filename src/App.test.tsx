@@ -43,10 +43,10 @@ describe('App shell', () => {
     expect(screen.getByText('Homepage outlet').parentElement).toHaveClass('bg-transparent');
   });
 
-  it('preserves the sand background on non-home routes', () => {
+  it('keeps non-home route wrappers transparent so the shell background shows through', () => {
     renderRoute('/case-studies');
 
-    expect(screen.getByText('Case studies outlet').parentElement).toHaveClass('bg-[#FFF6ED]');
+    expect(screen.getByText('Case studies outlet').parentElement).toHaveClass('bg-transparent');
   });
 
   it('renders Case Studies in the navigation', () => {
