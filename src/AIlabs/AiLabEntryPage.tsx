@@ -24,42 +24,19 @@ function TitleWithItalicSuffix({ title, suffix }: { title: string; suffix: strin
   );
 }
 
-function HeroMediaMock() {
+function HeroMediaVideo() {
   return (
     <div className="relative h-full w-full bg-[rgba(255,246,237,0.65)]">
-      <div className="absolute inset-0">
-        <div className="grid h-full grid-cols-12 gap-4 p-6 sm:p-8">
-          <div className="col-span-5 overflow-hidden rounded-3xl bg-[rgba(24,64,39,0.08)] shadow-[0_18px_40px_rgba(24,64,39,0.12)]">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_30%_30%,rgba(170,170,221,0.35),transparent_60%),radial-gradient(circle_at_70%_70%,rgba(239,244,131,0.22),transparent_55%),linear-gradient(135deg,rgba(24,64,39,0.08),rgba(255,246,237,0.65))]" />
-          </div>
-
-          <div className="col-span-7 overflow-hidden rounded-3xl bg-[rgba(24,64,39,0.12)] shadow-[0_18px_40px_rgba(24,64,39,0.12)]">
-            <div className="h-full w-full p-6 sm:p-8">
-              <div className="h-full w-full rounded-3xl bg-white/70 p-6 shadow-[inset_0_0_0_1px_rgba(24,64,39,0.1)]">
-                <div className="flex items-center justify-between">
-                  <div className="h-2 w-24 rounded-full bg-[rgba(24,64,39,0.12)]" />
-                  <div className="h-2 w-10 rounded-full bg-[rgba(24,64,39,0.08)]" />
-                </div>
-
-                <div className="mt-6 space-y-4">
-                  <div className="w-[72%] rounded-2xl bg-[rgba(170,170,221,0.18)] p-4">
-                    <div className="h-2 w-24 rounded-full bg-[rgba(24,64,39,0.14)]" />
-                    <div className="mt-3 h-2 w-40 rounded-full bg-[rgba(24,64,39,0.1)]" />
-                  </div>
-                  <div className="ml-auto w-[66%] rounded-2xl bg-[rgba(239,244,131,0.2)] p-4">
-                    <div className="h-2 w-28 rounded-full bg-[rgba(24,64,39,0.14)]" />
-                    <div className="mt-3 h-2 w-36 rounded-full bg-[rgba(24,64,39,0.1)]" />
-                  </div>
-                  <div className="w-[70%] rounded-2xl bg-[rgba(234,225,216,0.7)] p-4">
-                    <div className="h-2 w-24 rounded-full bg-[rgba(24,64,39,0.14)]" />
-                    <div className="mt-3 h-2 w-44 rounded-full bg-[rgba(24,64,39,0.1)]" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <video
+        className="h-full w-full object-cover"
+        style={{ objectPosition: '50% 18%' }}
+        src="/AIlabs/endtoendexperiment/heroeverything.MOV"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+      />
     </div>
   );
 }
@@ -122,7 +99,7 @@ export default function AiLabEntryPage() {
 
           <div className="mt-12 overflow-hidden rounded-[2rem] shadow-[0_30px_60px_-15px_rgba(24,64,39,0.18)]">
             <div className="aspect-[21/9] w-full">
-              <HeroMediaMock />
+              <HeroMediaVideo />
             </div>
           </div>
 
