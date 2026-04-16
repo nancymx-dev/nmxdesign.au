@@ -29,7 +29,7 @@ function HeroMediaVideo() {
     <div className="relative h-full w-full bg-[rgba(255,246,237,0.65)]">
       <video
         className="h-full w-full object-cover"
-        style={{ objectPosition: '50% 18%' }}
+        style={{ objectPosition: '50% 8%' }}
         src="/AIlabs/endtoendexperiment/heroeverything.MOV"
         autoPlay
         muted
