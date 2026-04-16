@@ -25,6 +25,10 @@ dist-ssr
 
 
 *.tsbuild.info
+*.tsbuildinfo
 
 # OpenCode
 .sisyphus/
+
+# Codex artifacts
+.codex-artifacts/

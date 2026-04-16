@@ -50,12 +50,16 @@ export const NavLink = ({ label, isActive, className, onClick, scale = 1 }: NavL
   const href = `/${label}`;
   const requiresDocumentNavigation = href === '/case-studies';
   const displayLabel =
-    label === 'aboutme'
-      ? 'About me'
-      : label
-          .split('-')
-          .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
-          .join(' ');
+    label === 'ai-lab'
+      ? 'AI Lab'
+      : label === 'ailab'
+        ? 'AI Lab'
+        : label === 'aboutme'
+          ? 'About me'
+          : label
+              .split('-')
+              .map((segment) => segment.charAt(0).toUpperCase() + segment.slice(1))
+              .join(' ');
 
   const commonProps = {
     className: `text-[#184027] hover:text-gray-600 transition-colors ${className ?? ''}`,

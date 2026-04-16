@@ -4,9 +4,10 @@ import { Link, useLocation, useOutlet } from 'react-router-dom';
 import { NavLink } from './components/Navlink.tsx';
 
 function App() {
-  const sections = ['case-studies', 'resume', 'aboutme'];
+  const sections = ['case-studies', 'ai-lab', 'resume', 'aboutme'];
   const location = useLocation();
   const isHomepageRoute = location.pathname === '/';
+  const isAiLabRoute = location.pathname === '/ai-lab' || location.pathname.startsWith('/ai-lab/');
   const isStickyDeckRoute =
     location.pathname === '/case-studies/apex-wrapped' ||
     location.pathname === '/case-studies/apexwrapped' ||
@@ -86,7 +87,7 @@ function App() {
         backgroundColor: '#FFF6ED',
       }}
     >
-      <div className="grid-background" aria-hidden="true" />
+      {isAiLabRoute ? null : <div className="grid-background" aria-hidden="true" />}
       <div className="relative z-10">
         <nav
           ref={navRef}

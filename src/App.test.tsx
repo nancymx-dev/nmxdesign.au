@@ -54,5 +54,8 @@ describe('App shell', () => {
 
     const caseStudyLink = screen.getByRole('link', { name: 'Case Studies' });
     expect(caseStudyLink).toBeInTheDocument();
+
+    const aiLabLink = screen.getByRole('link', { name: 'AI Lab' });
+    expect(aiLabLink).toBeInTheDocument();
   });
 });

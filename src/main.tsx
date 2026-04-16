@@ -14,6 +14,8 @@ const ProjectPage = lazy(() => import('./ProjectPage.tsx'));
 const UplinkPage = lazy(() => import('./UplinkPage.tsx'));
 const JiraPlaybookPage = lazy(() => import('./JiraPlaybookPage.tsx'));
 const ApexWrappedPage = lazy(() => import('./ApexWrappedPage.tsx'));
+const AiLabPage = lazy(() => import('./AIlabs/AiLabPage.tsx'));
+const AiLabEntryPage = lazy(() => import('./AIlabs/AiLabEntryPage.tsx'));
 
 const routeFallback = (
   <div className="flex min-h-[40vh] items-center justify-center bg-[#FFF6ED] px-6 text-center text-lg text-gray-600">
@@ -42,6 +44,9 @@ const router = createBrowserRouter([
       { path: 'case-studies/modc', element: withSuspense(<MODCCaseStudyPage />) },
       { path: 'case-studies/apexwrapped', element: <Navigate to="/case-studies/apex-wrapped" replace /> },
       { path: 'case-studies/:projectId', element: withSuspense(<ProjectPage />) },
+
+      { path: 'ai-lab', element: withSuspense(<AiLabPage />) },
+      { path: 'ai-lab/:entryId', element: withSuspense(<AiLabEntryPage />) },
 
       // Legacy /case-study routes → redirect to /case-studies
       { path: 'case-study', element: <Navigate to="/case-studies" replace /> },
