@@ -6,7 +6,9 @@ function parseSectionHeading(text: string): SectionHeading | null {
   const trimmed = text.trim();
   const match = /^(?<num>\d{2}(?:\s*&\s*\d{2})?)\s+(?<title>.+)$/.exec(trimmed);
   if (!match?.groups) return null;
-  return { number: match.groups.num, title: match.groups.title };
+  const { num, title } = match.groups;
+  if (!num || !title) return null;
+  return { number: num, title };
 }
 
 function renderBlock(block: AiLabContentBlock, key: string) {
