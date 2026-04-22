@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import ImageModal from '../components/ImageModal';
 import type { AiLabContentBlock } from './types';
 
 type SectionHeading = { number: string; title: string };
@@ -9,6 +11,41 @@ function parseSectionHeading(text: string): SectionHeading | null {
   const { num, title } = match.groups;
   if (!num || !title) return null;
   return { number: num, title };
+}
+
+type ZoomableImageProps = {
+  src: string;
+  alt: string;
+  buttonClassName: string;
+  frameClassName: string;
+  imageClassName: string;
+};
+
+function ZoomableImage({
+  src,
+  alt,
+  buttonClassName,
+  frameClassName,
+  imageClassName,
+}: ZoomableImageProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <>
+      <button
+        type="button"
+        aria-label={`Open full-size image for ${alt}`}
+        className={buttonClassName}
+        onClick={() => setIsOpen(true)}
+      >
+        <div className={frameClassName}>
+          <img src={src} alt={alt} className={imageClassName} loading="lazy" />
+        </div>
+      </button>
+
+      <ImageModal src={src} alt={alt} isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </>
+  );
 }
 
 function renderBlock(block: AiLabContentBlock, key: string) {
@@ -68,15 +105,111 @@ function renderBlock(block: AiLabContentBlock, key: string) {
   if (block.type === 'image') {
     return (
       <figure key={key} className="my-10">
-        <div className="overflow-hidden rounded-3xl border border-[rgba(24,64,39,0.12)] bg-white shadow-[0_22px_55px_rgba(24,64,39,0.10)]">
-          <img src={block.src} alt={block.alt} className="w-full" loading="lazy" />
-        </div>
+        <ZoomableImage
+          src={block.src}
+          alt={block.alt}
+          buttonClassName="group block w-full overflow-hidden rounded-3xl text-left transition-transform duration-200 hover:scale-[1.005] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(170,170,221,0.95)] focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(255,248,243,0.92)]"
+          frameClassName="overflow-hidden rounded-3xl border border-[rgba(24,64,39,0.12)] bg-white shadow-[0_22px_55px_rgba(24,64,39,0.10)]"
+          imageClassName="w-full transition-transform duration-300 group-hover:scale-[1.01]"
+        />
         {block.caption ? (
           <figcaption className="mt-3 text-sm text-[rgba(24,64,39,0.7)]">
             {block.caption}
           </figcaption>
         ) : null}
       </figure>
+    );
+  }
+
+  if (block.type === 'gallery') {
+    const gridClass =
+      block.columns === 2 ? 'md:grid-cols-2' : 'md:grid-cols-2 xl:grid-cols-3';
+
+    return (
+      <div key={key} className="my-12 space-y-5">
+        {block.title ? (
+          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[rgba(24,64,39,0.55)]">
+            {block.title}
+          </div>
+        ) : null}
+
+        <div className={`grid grid-cols-1 gap-5 ${gridClass}`}>
+          {block.items.map((item, itemIndex) => (
+            <figure
+              key={`${key}-gallery-item-${item.src}-${itemIndex}`}
+              className="flex h-full flex-col overflow-hidden rounded-[2rem] border border-[rgba(24,64,39,0.12)] bg-white/80 p-3 shadow-[0_22px_55px_rgba(24,64,39,0.08)]"
+            >
+              <ZoomableImage
+                src={item.src}
+                alt={item.alt ?? item.title ?? 'Gallery image'}
+                buttonClassName="group block w-full flex-1 overflow-hidden rounded-[1.4rem] text-left transition-transform duration-200 hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(170,170,221,0.95)] focus-visible:ring-offset-4 focus-visible:ring-offset-white"
+                frameClassName="flex h-full items-start overflow-hidden rounded-[1.4rem] border border-[rgba(24,64,39,0.08)] bg-[rgba(255,248,243,0.7)]"
+                imageClassName="w-full transition-transform duration-300 group-hover:scale-[1.01]"
+              />
+
+              {item.title || item.caption ? (
+                <figcaption className="mt-4 flex flex-col gap-2 px-1 pb-1">
+                  {item.title ? (
+                    <div className="text-sm font-semibold text-[rgba(24,64,39,0.84)]">
+                      {item.title}
+                    </div>
+                  ) : null}
+                  {item.caption ? (
+                    <div className="text-sm leading-relaxed text-[rgba(24,64,39,0.7)]">
+                      {item.caption}
+                    </div>
+                  ) : null}
+                </figcaption>
+              ) : null}
+            </figure>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (block.type === 'videoGallery') {
+    return (
+      <div key={key} className="my-12 space-y-5">
+        {block.title ? (
+          <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[rgba(24,64,39,0.55)]">
+            {block.title}
+          </div>
+        ) : null}
+
+        <div className="grid grid-cols-1 gap-5 xl:grid-cols-3">
+          {block.items.map((item, itemIndex) => (
+            <figure
+              key={`${key}-video-item-${item.src}-${itemIndex}`}
+              className="overflow-hidden rounded-[2rem] border border-[rgba(24,64,39,0.12)] bg-white/80 p-3 shadow-[0_22px_55px_rgba(24,64,39,0.08)]"
+            >
+              <div className="overflow-hidden rounded-[1.4rem] border border-[rgba(24,64,39,0.08)] bg-[rgba(255,248,243,0.7)]">
+                <video
+                  className="w-full"
+                  controls
+                  muted
+                  playsInline
+                  preload="metadata"
+                  poster={item.poster}
+                >
+                  <source src={item.src} />
+                </video>
+              </div>
+
+              {item.title ? (
+                <div className="mt-4 text-sm font-semibold text-[rgba(24,64,39,0.84)]">
+                  {item.title}
+                </div>
+              ) : null}
+              {item.caption ? (
+                <figcaption className="mt-2 text-sm leading-relaxed text-[rgba(24,64,39,0.7)]">
+                  {item.caption}
+                </figcaption>
+              ) : null}
+            </figure>
+          ))}
+        </div>
+      </div>
     );
   }
 

@@ -8,12 +8,22 @@ export type AiLabLink =
   | { kind: 'internal'; to: string }
   | { kind: 'external'; href: string; newTab?: boolean };
 
+export type AiLabMediaItem = {
+  src: string;
+  alt?: string;
+  title?: string;
+  caption?: string;
+  poster?: string;
+};
+
 export type AiLabContentBlock =
   | { type: 'heading'; level?: 2 | 3; text: string }
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'note'; title?: string; text: string }
   | { type: 'image'; src: string; alt: string; caption?: string }
+  | { type: 'gallery'; title?: string; columns?: 2 | 3; items: AiLabMediaItem[] }
+  | { type: 'videoGallery'; title?: string; items: AiLabMediaItem[] }
   | { type: 'table'; caption?: string; columns: string[]; rows: string[][] }
   | { type: 'embed'; title?: string; url: string };
 
