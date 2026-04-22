@@ -108,9 +108,9 @@ function renderBlock(block: AiLabContentBlock, key: string) {
         <ZoomableImage
           src={block.src}
           alt={block.alt}
-          buttonClassName="group block w-full overflow-hidden rounded-3xl text-left transition-transform duration-200 hover:scale-[1.005] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(170,170,221,0.95)] focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(255,248,243,0.92)]"
+          buttonClassName="block w-full overflow-hidden rounded-3xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(170,170,221,0.95)] focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(255,248,243,0.92)]"
           frameClassName="overflow-hidden rounded-3xl border border-[rgba(24,64,39,0.12)] bg-white shadow-[0_22px_55px_rgba(24,64,39,0.10)]"
-          imageClassName="w-full transition-transform duration-300 group-hover:scale-[1.01]"
+          imageClassName="w-full"
         />
         {block.caption ? (
           <figcaption className="mt-3 text-sm text-[rgba(24,64,39,0.7)]">

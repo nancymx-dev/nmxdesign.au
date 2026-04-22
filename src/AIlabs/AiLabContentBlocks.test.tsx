@@ -25,7 +25,24 @@ const galleryBlocks: AiLabContentBlock[] = [
   },
 ];
 
+const singleImageBlocks: AiLabContentBlock[] = [
+  {
+    type: 'image',
+    src: '/wide-diagram.webp',
+    alt: 'Wide experiment workflow diagram',
+    caption: 'The initial workflow framed the experiment.',
+  },
+];
+
 describe('AiLabContentBlocks', () => {
+  it('keeps standalone images static inside the frame so wide diagrams do not clip at the edges', () => {
+    const markup = renderToStaticMarkup(<AiLabContentBlocks blocks={singleImageBlocks} />);
+
+    expect(markup).toContain('aria-label="Open full-size image for Wide experiment workflow diagram"');
+    expect(markup).not.toContain('hover:scale-[1.005]');
+    expect(markup).not.toContain('group-hover:scale-[1.01]');
+  });
+
   it('renders gallery images as zoomable button triggers', () => {
     const markup = renderToStaticMarkup(<AiLabContentBlocks blocks={galleryBlocks} />);
 
