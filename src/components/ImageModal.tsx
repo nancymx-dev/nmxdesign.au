@@ -79,7 +79,7 @@ const ImageModal = ({ src, alt, isOpen, onClose }: ImageModalProps) => {
       />
       <animated.div
         style={modalAnimation}
-        className="relative max-w-[90vw] max-h-[90vh] overflow-hidden rounded-lg bg-white shadow-2xl"
+        className="relative max-w-[90vw] max-h-[90vh] bg-transparent shadow-2xl"
       >
         <button
           onClick={handleModalClose}
