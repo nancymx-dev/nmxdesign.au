@@ -21,7 +21,7 @@ export type AiLabContentBlock =
   | { type: 'paragraph'; text: string }
   | { type: 'list'; items: string[] }
   | { type: 'note'; title?: string; text: string }
-  | { type: 'image'; src: string; alt: string; caption?: string }
+  | { type: 'image'; src: string; alt: string; caption?: string; frame?: 'default' | 'diagram' }
   | { type: 'gallery'; title?: string; columns?: 2 | 3; items: AiLabMediaItem[] }
   | { type: 'videoGallery'; title?: string; items: AiLabMediaItem[] }
   | { type: 'table'; caption?: string; columns: string[]; rows: string[][] }

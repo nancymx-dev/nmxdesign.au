@@ -103,14 +103,18 @@ function renderBlock(block: AiLabContentBlock, key: string) {
   }
 
   if (block.type === 'image') {
+    const isDiagram = block.frame === 'diagram';
+
     return (
       <figure key={key} className="my-10">
         <ZoomableImage
           src={block.src}
           alt={block.alt}
           buttonClassName="block w-full overflow-hidden rounded-3xl text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgba(170,170,221,0.95)] focus-visible:ring-offset-4 focus-visible:ring-offset-[rgba(255,248,243,0.92)]"
-          frameClassName="overflow-hidden rounded-3xl border border-[rgba(24,64,39,0.12)] bg-white shadow-[0_22px_55px_rgba(24,64,39,0.10)]"
-          imageClassName="w-full"
+          frameClassName={`overflow-hidden rounded-3xl border border-[rgba(24,64,39,0.12)] bg-white shadow-[0_22px_55px_rgba(24,64,39,0.10)] ${
+            isDiagram ? 'p-6 sm:p-7 md:p-8' : ''
+          }`}
+          imageClassName={isDiagram ? 'block w-full bg-white' : 'w-full'}
         />
         {block.caption ? (
           <figcaption className="mt-3 text-sm text-[rgba(24,64,39,0.7)]">

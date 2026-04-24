@@ -2,6 +2,7 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 import AiLabEntryPage from './AiLabEntryPage';
+import { aiLabEntries } from './aiLabEntries';
 
 function renderEntry(entryId = 'designing-an-end-to-end-product-prototype-with-ai') {
   return renderToStaticMarkup(
@@ -41,5 +42,22 @@ describe('AiLabEntryPage', () => {
     expect(markup).toContain('Gemini prototype');
 
     expect(markup.match(/<video/g)).toHaveLength(4);
+  });
+
+  it('maps the OpenAI and Gemini prototype labels to the corrected videos', () => {
+    const entry = aiLabEntries.find(
+      (item) => item.id === 'designing-an-end-to-end-product-prototype-with-ai',
+    );
+    const videoGallery = entry?.content?.find((block) => block.type === 'videoGallery');
+
+    expect(videoGallery?.type).toBe('videoGallery');
+    if (!videoGallery || videoGallery.type !== 'videoGallery') {
+      throw new Error('Expected prototype video gallery to exist.');
+    }
+
+    expect(videoGallery.items[0]?.title).toBe('OpenAI prototype');
+    expect(videoGallery.items[0]?.src).toBe('/AIlabs/endtoendexperiment/prototype-gemini.mp4');
+    expect(videoGallery.items[2]?.title).toBe('Gemini prototype');
+    expect(videoGallery.items[2]?.src).toBe('/AIlabs/endtoendexperiment/prototype-openai.mp4');
   });
 });

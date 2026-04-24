@@ -64,6 +64,7 @@ export const aiLabEntries: AiLabEntry[] = [
         type: 'image',
         src: '/AIlabs/endtoendexperiment/experiment-question-workflow.webp',
         alt: 'Workflow diagram showing the experiment from product definition through prototype generation.',
+        frame: 'diagram',
         caption: 'The initial workflow framed the experiment as a sequence of product definition, PRD creation, design generation, and coded prototype output.',
       },
       { type: 'heading', level: 2, text: '03 Starting point: the brain dump' },
@@ -254,8 +255,8 @@ export const aiLabEntries: AiLabEntry[] = [
         title: 'Prototype comparison',
         items: [
           {
-            src: '/AIlabs/endtoendexperiment/prototype-openai.mp4',
-            poster: '/AIlabs/endtoendexperiment/prototype-openai-poster.png',
+            src: '/AIlabs/endtoendexperiment/prototype-gemini.mp4',
+            poster: '/AIlabs/endtoendexperiment/prototype-gemini-poster.png',
             title: 'OpenAI prototype',
             caption: 'Required a couple of extra prompts before the prototype became meaningfully clickable.',
           },
@@ -266,8 +267,8 @@ export const aiLabEntries: AiLabEntry[] = [
             caption: 'The strongest coded prototype in the experiment, with the most polished interaction quality and the least additional prompting.',
           },
           {
-            src: '/AIlabs/endtoendexperiment/prototype-gemini.mp4',
-            poster: '/AIlabs/endtoendexperiment/prototype-gemini-poster.png',
+            src: '/AIlabs/endtoendexperiment/prototype-openai.mp4',
+            poster: '/AIlabs/endtoendexperiment/prototype-openai-poster.png',
             title: 'Gemini prototype',
             caption: 'Produced a working direction, but the experience landed less refined and less usable than the Claude output.',
           },
@@ -296,6 +297,7 @@ export const aiLabEntries: AiLabEntry[] = [
         type: 'image',
         src: '/AIlabs/endtoendexperiment/recommended-workflow.webp',
         alt: 'Recommended workflow showing the path from rough concept through product definition, UI generation, and coding.',
+        frame: 'diagram',
         caption: 'The best result came from orchestrating several tools intentionally rather than expecting one model to win every stage end to end.',
       },
       { type: 'heading', level: 2, text: '10 Key learnings' },
