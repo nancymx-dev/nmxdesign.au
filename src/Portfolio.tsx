@@ -15,7 +15,8 @@ const portfolioItems: Project[] = [
     title: 'Uplinked',
     description:
       'Workforce Management System dashboard design for a physical security company managing hundreds of guards across multiple worksites.',
-    display_photo: '/uplinked/FinalDashboardFigma.jpg',
+    display_photo: '/uplinked/FinalDashboard.jpg',
+    media_image_class: 'object-top',
     tags: ['UX', 'Project Management', 'Dashboard', 'Web', 'Mobile'],
   },
   {
