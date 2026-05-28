@@ -37,7 +37,7 @@ const Card = ({ slug, title, description, display_photo, tags, style }: CardProp
           <img
             src={display_photo}
             alt={title}
-            className="w-full h-64 object-cover"
+            className={`w-full h-64 object-cover ${slug === 'uplinked' ? 'object-top' : ''}`}
             loading="lazy"
           />
         ) : null}

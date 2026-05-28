@@ -27,12 +27,12 @@ const UplinkPage = () => {
         <animated.div style={trail[1]} className="mb-16">
           <h1 className="text-6xl font-bold text-gray-700 mb-6 font-pfMarlet">Uplinked</h1>
           <OptimizedImage
-            src="/uplinked/FinalDashboardFigma.jpg"
-            alt="Uplinked dashboard design with Figma components"
+            src="/uplinked/FinalDashboard.jpg"
+            alt="Final Uplinked dashboard design"
             className="w-full rounded-xl shadow-lg mt-2 mb-8"
-            aspectRatio="16/9"
+            aspectRatio="16/10"
             loading="eager"
-            fit="cover"
+            fit="contain"
           />
           <div className="grid md:grid-cols-2 gap-8 text-lg">
             <div>
@@ -498,9 +498,9 @@ const UplinkPage = () => {
                 </ul>
               </div>
               <ClickableImage
-                src="/uplinked/FinalDashboardFigma.jpg"
-                alt="Figma components surrounding the final dashboard"
-                caption="Figma components and variants supporting the refined layout"
+                src="/uplinked/FinalDashboard.jpg"
+                alt="Final Uplinked dashboard design"
+                caption="Final Uplinked dashboard design"
               />
             </div>
           </div>
