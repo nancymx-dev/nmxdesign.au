@@ -12,6 +12,7 @@ interface CardProps {
   media_fit?: 'contain' | 'cover';
   media_wrapper_class?: string;
   media_image_class?: string;
+  media_video_class?: string;
   tags?: string[];
   // This correctly accepts the animation style from the parent
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -28,6 +29,7 @@ const Card = ({
   media_fit = 'cover',
   media_wrapper_class,
   media_image_class,
+  media_video_class,
   tags,
   style,
 }: CardProps) => {
@@ -84,7 +86,7 @@ const Card = ({
                 playsInline
                 preload={hover_video_preload}
                 aria-hidden="true"
-                className={`absolute -inset-[2px] h-[calc(100%+4px)] w-[calc(100%+4px)] max-w-none ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute -inset-[2px] h-[calc(100%+4px)] w-[calc(100%+4px)] max-w-none ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} ${media_video_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
               />
             ) : null}
           </div>

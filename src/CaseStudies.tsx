@@ -23,6 +23,8 @@ const caseStudyItems: Project[] = [
     media_fit: 'cover',
     // Keep the top UI visible; crop more from the bottom.
     media_image_class: 'object-[50%_18%]',
+    // Trim the recording's dark edge pixels without noticeably cropping the UI.
+    media_video_class: 'scale-x-[1.004]',
     tags: ['Enterprise', 'Admin UX', 'Governance'],
   },
   {

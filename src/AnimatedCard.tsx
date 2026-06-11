@@ -11,6 +11,7 @@ export type Project = {
   media_fit?: 'contain' | 'cover';
   media_wrapper_class?: string;
   media_image_class?: string;
+  media_video_class?: string;
   tags?: string[];
 };
 
@@ -38,6 +39,7 @@ const AnimatedCard = ({ item }: { item: Project }) => {
         media_fit={item.media_fit}
         media_wrapper_class={item.media_wrapper_class}
         media_image_class={item.media_image_class}
+        media_video_class={item.media_video_class}
         tags={item.tags}
         style={animationStyle}
       />
