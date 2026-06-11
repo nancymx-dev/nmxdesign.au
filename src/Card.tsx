@@ -84,7 +84,7 @@ const Card = ({
                 playsInline
                 preload={hover_video_preload}
                 aria-hidden="true"
-                className={`absolute inset-0 h-full w-full ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
+                className={`absolute -inset-[2px] h-[calc(100%+4px)] w-[calc(100%+4px)] max-w-none ${media_fit === 'contain' ? 'object-contain' : 'object-cover'} ${media_image_class ?? ''} transition-opacity duration-300 ${isHovered ? 'opacity-100' : 'opacity-0'}`}
               />
             ) : null}
           </div>
