@@ -31,6 +31,7 @@ const caseStudyItems: Project[] = [
     description:
       'Workforce Management System dashboard design for a physical security company managing hundreds of guards across multiple worksites.',
     display_photo: '/uplinked/FinalDashboard.jpg',
+    hover_video: '/uplinked/Uplinkedcardvideo.mov',
     media_image_class: 'object-top',
     tags: ['UX', 'Project Management', 'Dashboard', 'Web', 'Mobile'],
   },
