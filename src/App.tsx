@@ -139,7 +139,13 @@ function App() {
         )}
 
         <main
-          className={`relative w-full flex-grow ${isStickyDeckRoute ? 'overflow-visible' : 'overflow-hidden'} ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
+          className={`relative w-full flex-grow ${
+            isStickyDeckRoute
+              ? 'overflow-visible'
+              : isHomepageRoute
+                ? 'overflow-x-hidden'
+                : 'overflow-hidden'
+          } ${isHomepageRoute ? 'pb-0' : 'pb-12'}`}
         >
           {isStickyDeckRoute ? (
             <div className="min-h-full bg-transparent">

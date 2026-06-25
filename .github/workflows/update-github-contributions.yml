@@ -1,0 +1,42 @@
+name: Update GitHub Contributions
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 20 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh contribution data
+        run: npm run update:github-contributions
+
+      - name: Commit updated contribution data
+        run: |
+          if git diff --quiet -- public/github-contributions.json; then
+            echo "Contribution data is already current."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add public/github-contributions.json
+          git commit -m "Update GitHub contribution data"
+          git push
